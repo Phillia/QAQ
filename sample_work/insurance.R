@@ -11,10 +11,10 @@ get_yr <- function(dt,key) {
     nam <- names(dt)
     substr(nam[grep(key,nam)],2,5)
 }
-uninsured.tot.pct <- read.csv("uninsured_total_pct.csv",skip=2) %>% filter(complete.cases(.))
-uninsured.tot.pct <- uninsured.tot.pct %>% select(grep("Location|Uninsured",names(.))) %>% set_names("statename",paste0("uninsured_pct_",get_yr(uninsured.tot.pct,"Uninsured")))
-uninsured.tot.num <- read.csv("uninsured_total_num.csv",skip=2) %>% filter(complete.cases(.))
-uninsured.tot.num <- uninsured.tot.num %>% select(grep("Location|Uninsured",names(.))) %>% set_names("statename",paste0("uninsured_num_",get_yr(uninsured.tot.num,"Uninsured")))
+uninsured.tot.pct <- read.csv("uninsured_total_pct.csv",skip=2) %>% select(-Footnotes) %>% filter(complete.cases(.))
+uninsured.tot.pct <- uninsured.tot.pct[-1,] %>% select(grep("Location|Uninsured",names(.))) %>% set_names("statename",paste0("uninsured_pct_",get_yr(uninsured.tot.pct,"Uninsured")))
+uninsured.tot.num <- read.csv("uninsured_total_num.csv",skip=2) %>% select(-Footnotes) %>% filter(complete.cases(.))
+uninsured.tot.num <- uninsured.tot.num[-1,] %>% select(grep("Location|Uninsured",names(.))) %>% set_names("statename",paste0("uninsured_num_",get_yr(uninsured.tot.num,"Uninsured")))
 
 
 states.shp <- readOGR(dsn="./us_states_hexgrid/us_states_hexgrid.shp",
@@ -51,4 +51,11 @@ leaflet(data=state_carto) %>%
         prefix = "(", suffix = ")%", between = ", ",
         transform = function(x) 100 * x
     ))
+
+#centroid: KY
+# library(maptools)
+# library(rgeos)
+# landuse <- readShapePoly("landuse") 
+# 
+# centr <- gCentroid(landuse, byid = TRUE)
 

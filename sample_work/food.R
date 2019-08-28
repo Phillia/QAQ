@@ -4,14 +4,15 @@ library(furrr)
 library(tmaptools)
 
 food <- read_excel("food.xlsx")
+food$n <- row.names(food)
 
 ### geocode
 plan(multiprocess)
 geocoded <- future_map(paste0(food$street,",USA"),
                             safely(function(x) geocode_OSM(x)$coords %>% t() %>% tbl_df())) %>% purrr::transpose()
-new <- geocoded$result %>% set_names(food$name) %>% 
-    bind_rows(.id="name") %>% select(name,longitude=x,lat=y) %>% 
-    full_join(food ,by="name")
+new <- geocoded$result %>% set_names(food$n) %>% 
+    bind_rows(.id="n") %>% select(n,longitude=x,lat=y) %>% 
+    full_join(food,by=c("n"))
 
 new[new$name=="Sonobana",c("longitude","lat")] <- c(-86.8523238,36.1299624)
 new[new$name=="Pastaria",c("longitude","lat")] <- c(-86.8202853,36.1513777)

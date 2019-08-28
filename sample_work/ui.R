@@ -64,10 +64,14 @@ body <- dashboardBody(
                 br(),
                 # http://www.user2019.fr/datathon/
                 # Note: Plot theme adapted from Christopher Adolph’s code (faculty.washington.edu/cadolph).
-                p("Description: I produced these two animated graphs for my team submission to the Datathan Challenge 
-                  organized by useR! 2019 Conference  and the French Statistical Society (SFdS). In the data challenge, my team
+                p("Description: These two animated graphs were created for my team submission to the Datathan Challenge 
+                  organized by useR! 2019 Conference and the French Statistical Society (SFdS). In the data challenge, my team
                   used data from the Health Nutrition and Population Statistics database hosted by the World Bank Group to demonstrate
-                  an association between child mortality and female education. Our submission was ranked second."),
+                  an association between child mortality and female education. Our submission was ranked second place."),
+                p("Note: Graphic themes adapted from Dr. Christopher Adolph’s codes (faculty.washington.edu/cadolph)."),
+                tags$a(href="http://www.user2019.fr/datathon/","http://www.user2019.fr/datathon/"),
+                br(),
+                br(),
                 fluidRow(
                     column(width=12,imageOutput("animated1"))
                 ),
@@ -84,36 +88,33 @@ body <- dashboardBody(
                 p("Description: Plot uninsured rates among US non-elderly adults (age 18-64) using KFF data. 
                 Weighting state hexagon by number of uninsured adds another layer of data to the map.
                 Data from KFF PUF:"),
-                fluidRow(
-                    column(width=3,
-                           #numericInput("yr","Select Year",2013,2013,2016,1)),
+                sidebarLayout(
+                    sidebarPanel(
                            tags$style(type = "text/css", ".irs-grid-pol.small {height: 0px;}"),
-                           sliderInput("yr","Select Year",2013,2016,2013,1,sep="")),
-                    column(width=3,
-                           radioButtons("carto","Weighted by uninsured number",c("Yes","No"),"No")),
-                    column(width=3,
-                           actionButton("click","Click to apply changes"))
+                           sliderInput("yr","Select Year",2013,2017,2013,1,sep=""),
+                           radioButtons("carto","Weighted by uninsured number",c("Yes","No"),"No"),
+                           actionButton("click","Update")
+                    ),
+                    mainPanel(leafletOutput("uninsured"))
                 ),
+                br(),
+                h4("View Data"),
                 fluidRow(
-                    leafletOutput("uninsured")
+                    column(7,p("Sorting and filtering are enabled. Click \"Download\" button to save the data as a csv.")),
+                    column(3,downloadButton("downloadData", "Download"))
                 ),
-                p("View the raw data. Sorting and filtering are enabled. Click here to download as csv."),
+                br(),
                 fluidRow(
-                    downloadButton("downloadData", "Download"),
-                    DTOutput("uninsured_tb")
+                    column(12,DTOutput("uninsured_tb"))
                 )
+                
         ),
         
         tabItem(tabName = "p3",
                 h2("A Personal Food Map for Nashville"),
-                br(),
                 p("Description: Geocode and map a list of restaurants in Nashville. Click to filter different categories."),
                 fluidRow(
-                    textInput("loc","My Location (Enter Street/City/Zip for best results)", "2525 West End Ave, Nashville, TN 37203"),
-                    actionButton("locate","Click to pop up your location on map")
-                ),
-                fluidRow(
-                    column(width=3,
+                    column(width=4,
                            checkboxGroupInput("cat","Category",rescat,rescat),
                            checkboxInput('bar1', 'Select/Deselect All',TRUE)
                     ),
@@ -126,7 +127,17 @@ body <- dashboardBody(
                            ))
                 ),
                 fluidRow(
-                    verbatimTextOutput("check"),
+                    column(width=7,
+                           textInput("loc","Optional: Pop Up My Location (Street/City/Zip)", "2525 West End Ave, Nashville, TN 37203",width="100%")
+                    ),
+                    column(width=4,
+                           fluidRow("", style = "height:25px;"),
+                           actionButton("locate","Update"),
+                           actionButton("reset","Reset")
+                    )),
+                fluidRow(
+                    #### KEEP A MINI DEBUGGER####
+                    #verbatimTextOutput("check"),
                     leafletOutput("foodie")
                 )
         ),

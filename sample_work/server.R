@@ -26,6 +26,7 @@ rescat2 <- unique(new[!is.na(new$sub),]$sub)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output,session) {
     
+    #### P1 ####
     output$animated1 <- renderImage({
         
         # Return a list containing the filename
@@ -43,6 +44,7 @@ shinyServer(function(input, output,session) {
              contentType = 'image/gif'
         )}, deleteFile = FALSE)
     
+    #### P2 ####
     #data to plot
     dtplot <- eventReactive(input$click,{
         if(input$carto=="Yes") {
@@ -77,9 +79,17 @@ shinyServer(function(input, output,session) {
             addLegend("bottomright",pal = pall,values = seq(0,0.2,0.01),#~rate,
                       labFormat = labelFormat(suffix = "%", between = ", ",transform = function(x) 100 * x),
                       title = "Uninsured Rate %"
-            ) #### SET KY AS VIEW?? SEPARATE GRAPHS AND ADD ANIMATION
+            ) %>% setView(-99.9,40.7,zoom = 3)
     })
     
+    output$downloadData <- downloadHandler(
+        filename = "KFF_uninsured_state_2013_16.csv",
+        content = function(file) {
+            write.csv(states.shp@data %>% select(state_abb=st,state_name=statename,starts_with("uninsured")), file, row.names = FALSE)
+        }
+    )
+    
+    #### P3 ####
     observe({
         updateCheckboxGroupInput(
             session, 'cat', choices = rescat,
@@ -94,14 +104,7 @@ shinyServer(function(input, output,session) {
             inline = TRUE
         )
     })
-    
-    output$downloadData <- downloadHandler(
-        filename = "KFF_uninsured_state_2013_16.csv",
-        content = function(file) {
-            write.csv(states.shp@data %>% select(state_abb=st,state_name=statename,starts_with("uninsured")), file, row.names = FALSE)
-        }
-    )
-    
+
     
     #restaurants to map
     res <- reactive({
@@ -112,10 +115,20 @@ shinyServer(function(input, output,session) {
         }
     })
     
+    #pop up feature
     myloc <- reactiveVal(NULL)
     observeEvent(input$locate,{
-        new <- geocode_OSM(paste0(input$loc,",USA"))$coords %>% t() %>% tbl_df()
-        myloc(new)
+        new <- geocode_OSM(paste0(input$loc,",USA"))
+        if(!is.null(new)) {
+            myloc(new$coords %>% t() %>% tbl_df())
+        } else {
+            myloc(NULL)
+            showNotification("Failed to geocode your location",type = "error")
+        }
+    })
+    
+    observeEvent(input$reset,{
+        myloc(NULL)
     })
     
     greenLeafIcon <- makeIcon(
@@ -127,9 +140,10 @@ shinyServer(function(input, output,session) {
         shadowAnchorX = 4, shadowAnchorY = 62
     )
     
-    output$check <- renderPrint(
-        myloc()
-    )
+    #### KEEP A MINI DEBUGGER####
+    # output$check <- renderPrint(
+    #     myloc()
+    # )
     
     leaf1 <- reactive({
         leaflet() %>% addTiles() %>%
@@ -144,9 +158,13 @@ shinyServer(function(input, output,session) {
     })
     
     
-    
-    
 })
 
 #### plot size issue
 #### https://stackoverflow.com/questions/29179088/flexible-width-and-height-of-pre-rendered-image-using-shiny-and-renderimage
+
+# t0 <- "2525 West End Ave, Nashville, TN 37203"
+# t1 <- "48 White Bridge Road, Nashville, TN 37205"
+# geocode_OSM(t0)
+# geocode_OSM(t1)
+
