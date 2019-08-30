@@ -25,10 +25,10 @@ rescat2 <- unique(new[!is.na(new$sub),]$sub)
 sidebar <- dashboardSidebar(
     sidebarMenu(
         menuItem("About", tabName = "home", icon = icon("dashboard")),
-        menuItem("Animated graphs", icon = icon("chart-line"), tabName = "p1"),
+        menuItem("Animated", icon = icon("chart-line"), tabName = "p1"),
         menuItem("Interactive", icon = icon("heartbeat"), tabName = "p2"),
-        menuItem("Nashville Food Map", icon = icon("utensils"), tabName = "p3"),
-        menuItem("Others", icon = icon("th"), tabName = "p4")
+        menuItem("Street Map", icon = icon("utensils"), tabName = "p3"),
+        menuItem("Other", icon = icon("th"), tabName = "p4")
     )
 )
 
@@ -37,10 +37,11 @@ body <- dashboardBody(
         tabItem(tabName = "home",
                 h2("About This Page"),
                 br(),
-                p("This is a Shiny app compiling some data visualization examples I programmed in R. 
-                The main purpose of this app to demonstrate my skills and flexibility to present data and make them more accessible to a broader audience.
-                I drew on projects at and outside of my work and either directly included the graphic outputs or produced simple examples.
-                I hope to apply such skills to promoting effective communication of data, evidence-based decision-making, and country ownership of SDGs.
+                p("This is a Shiny app compiling data visualization examples I programmed in R. 
+                The main purpose of this app to demonstrate my skills and flexibility to present data and 
+                design visualizations that make data more accessible to a broader audience.
+                I drew on projects at and outside of my work and either directly included the original graphic outputs or produced simpler examples.
+                I hope to apply my data knowledge and skills to promoting effective communication of data, evidence-based decision-making, and country ownership of SDGs.
                   "),
                 br(),
                 h2("What is Shiny app?"),
@@ -53,21 +54,21 @@ body <- dashboardBody(
                 In my current position, I regularly create a variety of graphs for data exploration and academic manuscripts 
                 as well as interacitve Shiny Apps to promote dissemination of research findings.
                 As a proficient R user, I am familiar with \"ggplot2\", \"leaflet\", and \"shiny\" packages and 
-                have experience in plotting geospatial data and designing complicated user interface for Shiny apps."),
+                have experience in plotting geospatial data and designing complicated user interface in Shiny apps."),
                 p("Please email zhouzilu.gens@gmail.com with any questions about this web app or my work.")
                 #HTML(<ahref="mailto:hello@rshiny.com?"> click here for email! </a>)
                 
         ),
         
         tabItem(tabName = "p1",
-                h2("Animated graphs"),
+                h2("Linking Child Health And Female Education"),
                 br(),
                 # http://www.user2019.fr/datathon/
                 # Note: Plot theme adapted from Christopher Adolph’s code (faculty.washington.edu/cadolph).
-                p("Description: These two animated graphs were created for my team submission to the Datathan Challenge 
+                p("These two animated graphs were created for my team submission to the Datathan Challenge 
                   organized by useR! 2019 Conference and the French Statistical Society (SFdS). In the data challenge, my team
-                  used data from the Health Nutrition and Population Statistics database hosted by the World Bank Group to demonstrate
-                  an association between child mortality and female education. Our submission was ranked second place."),
+                  used a dataset from the Health Nutrition and Population Statistics database hosted by the World Bank Group to demonstrate
+                  an association between child mortality and female education. Our submission was ranked second."),
                 p("Note: Graphic themes adapted from Dr. Christopher Adolph’s codes (faculty.washington.edu/cadolph)."),
                 tags$a(href="http://www.user2019.fr/datathon/","http://www.user2019.fr/datathon/"),
                 br(),
@@ -83,17 +84,21 @@ body <- dashboardBody(
         ),
         
         tabItem(tabName = "p2",
-                h2("Interactive graphs on uninsured rates in USA"),
+                h2("Uninsured Rates Among US Adults, 2013-2017"),
                 br(),
-                p("Description: Plot uninsured rates among US non-elderly adults (age 18-64) using KFF data. 
-                Weighting state hexagon by number of uninsured adds another layer of data to the map.
-                Data from KFF PUF:"),
+                p("Interactive plots of uninsured rates among US non-elderly adults (age 18-64) using 
+                state-level data published by Henry J Kaiser Family Foundation. 
+                Feel free to select year of data and un-adjusted/weighted option, and click the \"Update\" button to render the plot.
+                The weighted measure change the size of state hexagons to reflect variation in the uninsured population size across states, 
+                which adds another layer of data to the map.
+            "),
+                
                 sidebarLayout(
                     sidebarPanel(
-                           tags$style(type = "text/css", ".irs-grid-pol.small {height: 0px;}"),
-                           sliderInput("yr","Select Year",2013,2017,2013,1,sep=""),
-                           radioButtons("carto","Weighted by uninsured number",c("Yes","No"),"No"),
-                           actionButton("click","Update")
+                        tags$style(type = "text/css", ".irs-grid-pol.small {height: 0px;}"),
+                        sliderInput("yr","Select Year",2013,2017,2013,1,sep=""),
+                        radioButtons("carto","Weighted by uninsured number",c("Yes","No"),"No"),
+                        actionButton("click","Update")
                     ),
                     mainPanel(leafletOutput("uninsured"))
                 ),
@@ -101,7 +106,8 @@ body <- dashboardBody(
                 h4("View Data"),
                 fluidRow(
                     column(7,p("Sorting and filtering are enabled. Click \"Download\" button to save the data as a csv.")),
-                    column(3,downloadButton("downloadData", "Download"))
+                    column(2,downloadButton("downloadData", "Download")),
+                    column(3,tags$a(href="https://bit.ly/2zQKL3F", "Link to original data source"))
                 ),
                 br(),
                 fluidRow(
@@ -111,8 +117,12 @@ body <- dashboardBody(
         ),
         
         tabItem(tabName = "p3",
-                h2("A Personal Food Map for Nashville"),
-                p("Description: Geocode and map a list of restaurants in Nashville. Click to filter different categories."),
+                h2("A Personal Food Map For Nashville"),
+                p("This real street map marks a list of my favorite restaurants/groceries in Nashville. 
+                Click to filter different categories.
+                  Entering your current location will rezoom the map to show spots close to you.
+                  Bon appetit!
+                  "),
                 fluidRow(
                     column(width=4,
                            checkboxGroupInput("cat","Category",rescat,rescat),
@@ -143,7 +153,7 @@ body <- dashboardBody(
         ),
         
         tabItem(tabName = "p4",
-                h2("Other graphics: TBA")
+                h2("TBA")
         )
         
     )
