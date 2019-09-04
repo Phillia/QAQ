@@ -9,6 +9,14 @@ rescat2 <- unique(new[!is.na(new$sub),]$sub)
 
 shinyServer(function(input, output,session) {
     
+    output$p1 <- renderImage({list(src = "1.png",width=300,height=300)}, deleteFile = FALSE)
+    output$p2 <- renderImage({list(src = "2.png",width=600,height=300)}, deleteFile = FALSE)
+    output$p3 <- renderImage({list(src = "3.png",width=800,height=300)}, deleteFile = FALSE)
+    output$p4 <- renderImage({list(src = "4.png",width=600,height=300)}, deleteFile = FALSE)
+    output$p6 <- renderImage({list(src = "6.png",width=800,height=300)}, deleteFile = FALSE)
+    output$p7 <- renderImage({list(src = "7.png",width=900,height=400)}, deleteFile = FALSE)
+    output$p8 <- renderImage({list(src = "8.png",width=900,height=350)}, deleteFile = FALSE)
+    
     #select/deselect feature to update check boxes in UI
     observe({
         updateCheckboxGroupInput(

@@ -10,8 +10,9 @@ sidebar <- dashboardSidebar(
     #multiple menu items on the left
     sidebarMenu(
         menuItem("About", tabName = "home", icon = icon("dashboard")),
-        menuItem("Menu Item 1: Blank Page", icon = icon("chart-line"), tabName = "p1"),
-        menuItem("Menu Item 2: Street Map", icon = icon("utensils"), tabName = "p3")
+        menuItem("How to Start", icon = icon("chart-line"), tabName = "p1"),
+        menuItem("Simple Case", icon = icon("chart-line"), tabName = "p2"),
+        menuItem("Refined Version", icon = icon("utensils"), tabName = "p3")
     )
 )
 
@@ -39,7 +40,28 @@ body <- dashboardBody(
         ),
         
         tabItem(tabName = "p1",
-                p("")
+                h3("Start from code template in RStudio"),
+                splitLayout(
+                    cellWidths = c("320", "600"),
+                    imageOutput("p1"),
+                    imageOutput("p2")
+                ),
+                h3("Click \"Run App\" on top right"),
+                fluidRow(column(12,imageOutput("p3"))),
+                h3("Click \"Publish\" button to publish app on server (2 options)"),
+                fluidRow(column(12,imageOutput("p4"))),
+                h3("Essentially you just fill the two buckets"),
+                fluidRow(column(12,imageOutput("p6")))
+                
+                
+        ),
+        
+        tabItem(tabName = "p2",
+                h3("Example"),
+                tags$a(href="https://shiny.rstudio.com", "Click Me"),
+                br(),
+                fluidRow(column(12,imageOutput("p7"))),
+                fluidRow(style = "padding-top:20px",column(12,imageOutput("p8")))
         ),
         
         tabItem(tabName = "p3",
