@@ -38,7 +38,7 @@ body <- dashboardBody(
                 h2("About This Page"),
                 br(),
                 p("This is a Shiny app compiling data visualization examples I programmed in R. 
-                The main purpose of this app to demonstrate my skills and flexibility to present data and 
+                The main purpose of this app is to demonstrate my skills and flexibility to present data and 
                 design visualizations that make data more accessible to a broader audience.
                 I drew on projects at and outside of my work and either directly included the original graphic outputs or produced simpler examples.
                 I hope to apply my data knowledge and skills to promoting effective communication of data, evidence-based decision-making, and country ownership of SDGs.
@@ -62,12 +62,11 @@ body <- dashboardBody(
         
         tabItem(tabName = "p1",
                 h2("Linking Child Health And Female Education"),
-                br(),
                 # http://www.user2019.fr/datathon/
                 # Note: Plot theme adapted from Christopher Adolph’s code (faculty.washington.edu/cadolph).
                 p("These two animated graphs were created for my team submission to the Datathan Challenge 
                   organized by useR! 2019 Conference and the French Statistical Society (SFdS). In the data challenge, my team
-                  used a dataset from the Health Nutrition and Population Statistics database hosted by the World Bank Group to demonstrate
+                  used a public dataset from the Health Nutrition and Population Statistics database hosted by the World Bank Group to demonstrate
                   an association between child mortality and female education. Our submission was ranked second."),
                 p("Note: Graphic themes adapted from Dr. Christopher Adolph’s codes (faculty.washington.edu/cadolph)."),
                 tags$a(href="http://www.user2019.fr/datathon/","http://www.user2019.fr/datathon/"),
@@ -85,11 +84,10 @@ body <- dashboardBody(
         
         tabItem(tabName = "p2",
                 h2("Uninsured Rates Among US Adults, 2013-2017"),
-                br(),
                 p("Interactive plots of uninsured rates among US non-elderly adults (age 18-64) using 
-                state-level data published by Henry J Kaiser Family Foundation. 
-                Feel free to select year of data and un-adjusted/weighted option, and click the \"Update\" button to render the plot.
-                The weighted measure change the size of state hexagons to reflect variation in the uninsured population size across states, 
+                state-level data published by Henry J Kaiser Family Foundation."), 
+                p("Feel free to select year of data and un-adjusted/weighted option, and click the \"Update\" button to render the plot.
+                The weighting method changes the size of state hexagons to reflect variation in the uninsured population size across states, 
                 which adds another layer of data to the map.
             "),
                 
@@ -102,7 +100,7 @@ body <- dashboardBody(
                     ),
                     mainPanel(leafletOutput("uninsured"))
                 ),
-                br(),
+                br(),br(),
                 h4("View Data"),
                 fluidRow(
                     column(7,p("Sorting and filtering are enabled. Click \"Download\" button to save the data as a csv.")),
@@ -153,7 +151,7 @@ body <- dashboardBody(
         ),
         
         tabItem(tabName = "p4",
-                h2("TBA")
+                h2("Under Contruction")
         )
         
     )

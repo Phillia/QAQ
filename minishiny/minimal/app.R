@@ -8,6 +8,7 @@
 #
 
 library(shiny)
+library(leaflet)
 #path defaults to where the app file physically sits
 load("../foodlist.rda")
 rescat <- unique(new$category)
@@ -21,7 +22,7 @@ ui <- fluidPage(
       Click to filter different categories."),
   
   # UI input
-  checkboxGroupInput("cat","Category",rescat,rescat,inline = TRUE),
+  checkboxGroupInput("cat","Category",rescat,"restaurant",inline = TRUE),
   
   # Output
   leafletOutput("foodie"),
@@ -39,7 +40,7 @@ server <- function(input, output, session) {
   #restaurants to map: 
   #create a reactive object that refreshes every time when the input changes
   res <- reactive({
-    new %>% filter(category %in% input$cat)
+    new %>% filter(category %in% input$cat | category2 %in% input$cat)
   })
   
   #### KEEP A MINI DEBUGGER####
