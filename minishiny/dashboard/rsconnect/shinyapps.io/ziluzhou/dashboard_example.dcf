@@ -1,0 +1,12 @@
+name: dashboard_example
+title: dashboard_example
+username:
+account: ziluzhou
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1179103
+bundleId: 2406798
+url: https://ziluzhou.shinyapps.io/dashboard_example/
+when: 1568215234.87858
+asMultiple: FALSE
+asStatic: FALSE

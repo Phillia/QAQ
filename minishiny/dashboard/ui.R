@@ -1,7 +1,7 @@
 library(shinydashboard)
 library(leaflet)
 
-load("../foodlist.rda")
+load("foodlist.rda")
 rescat <- unique(new$category)
 rescat2 <- unique(new[!is.na(new$sub),]$sub) 
 
@@ -24,19 +24,19 @@ body <- dashboardBody(
                 h2("What is Shiny app?"),
                 p("A Shiny app is an interactive web app written in R using the \"Shiny\" package. 
                   For more information, please check their website:"),
-                tags$a(href="https://shiny.rstudio.com", "Click to learn more"),
-                h2("Using Leaflet in R?"),
+                tags$a(href="https://shiny.rstudio.com", "Click to learn more",target="_blank"),
+                h2("Leaflet in R?"),
                 p("Leaflet is very handy when it comes to create interactive maps.
                   It can directly plot shape files. 
-                  You can also use its default street map tiles."),
-                tags$a(href="https://rstudio.github.io/leaflet/","Click to learn more"),
+                  You can also use the default street map tiles."),
+                tags$a(href="https://rstudio.github.io/leaflet/","Click to learn more",target="_blank"),
                 h2("Other Resources"),
                 tags$a(href="https://rstudio.github.io/shinydashboard/","Easy dashboards with \"shinydashboard\""),
                 br(),
-                tags$a(href="https://shiny.rstudio.com/articles/cheatsheet.html","Shiny cheat sheet"),
+                tags$a(href="https://shiny.rstudio.com/articles/cheatsheet.html","Shiny cheat sheet",target="_blank"),
                 br(),
                 tags$a(href="https://data.boston.gov/showcase/imagine-boston-2030-metrics-dashboard",
-                       "Real-world User Case: Imagine Bostion 2030 Metrics Dashboard")
+                       "Real-world User Case: Imagine Bostion 2030 Metrics Dashboard",target="_blank")
         ),
         
         tabItem(tabName = "p1",
@@ -58,7 +58,7 @@ body <- dashboardBody(
         
         tabItem(tabName = "p2",
                 h3("Example"),
-                tags$a(href="https://shiny.rstudio.com", "Click Me"),
+                tags$a(href="https://ziluzhou.shinyapps.io/minimal/","Demo",target="_blank"),
                 br(),
                 fluidRow(column(12,imageOutput("p7"))),
                 fluidRow(style = "padding-top:20px",column(12,imageOutput("p8")))

@@ -1,0 +1,12 @@
+name: minimal
+title: minimal
+username:
+account: ziluzhou
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1178918
+bundleId: 2406724
+url: https://ziluzhou.shinyapps.io/minimal/
+when: 1568213936.15358
+asMultiple: FALSE
+asStatic: FALSE

@@ -2,8 +2,9 @@ library(shiny)
 library(leaflet)
 library(htmltools)
 library(dplyr)
+library(tmaptools)
 
-load("../foodlist.rda")
+load("foodlist.rda")
 rescat <- unique(new$category)
 rescat2 <- unique(new[!is.na(new$sub),]$sub) 
 
@@ -15,7 +16,7 @@ shinyServer(function(input, output,session) {
     output$p4 <- renderImage({list(src = "4.png",width=600,height=300)}, deleteFile = FALSE)
     output$p6 <- renderImage({list(src = "6.png",width=800,height=300)}, deleteFile = FALSE)
     output$p7 <- renderImage({list(src = "7.png",width=900,height=400)}, deleteFile = FALSE)
-    output$p8 <- renderImage({list(src = "8.png",width=900,height=350)}, deleteFile = FALSE)
+    output$p8 <- renderImage({list(src = "8.png",width=900,height=450)}, deleteFile = FALSE)
     
     #select/deselect feature to update check boxes in UI
     observe({

@@ -10,7 +10,7 @@
 library(shiny)
 library(leaflet)
 #path defaults to where the app file physically sits
-load("../foodlist.rda")
+load("foodlist.rda")
 rescat <- unique(new$category)
 
 # Define UI for application that draws a histogram
@@ -40,7 +40,7 @@ server <- function(input, output, session) {
   #restaurants to map: 
   #create a reactive object that refreshes every time when the input changes
   res <- reactive({
-    new %>% filter(category %in% input$cat | category2 %in% input$cat)
+    new[new$category %in% input$cat | new$category2 %in% input$cat,]
   })
   
   #### KEEP A MINI DEBUGGER####
@@ -51,7 +51,8 @@ server <- function(input, output, session) {
   #render output taking UI inputs or reactive objects 
   output$foodie <-  renderLeaflet({
     leaflet() %>% addTiles() %>%
-      addMarkers(data=res(),lng=~longitude, lat=~lat, popup = ~paste('<strong>',name,'</strong>',"<br>",dish)) %>% setView(-86.77435,36.16223,11)
+      addMarkers(data=res(),lng=~longitude, lat=~lat, popup = ~paste('<strong>',name,'</strong>',"<br>",dish)) %>% 
+      setView(-86.77435,36.16223,11)
   })
   
   
