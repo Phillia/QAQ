@@ -47,7 +47,7 @@ body <- dashboardBody(
                 h2("What is Shiny app?"),
                 p("A Shiny app is an interactive web app written in R using the \"Shiny\" package. 
                   For more information, please check their website:"),
-                tags$a(href="https://shiny.rstudio.com", "Click here"),
+                tags$a(href="https://shiny.rstudio.com", "Click here",target="_blank"),
                 
                 h2("About Me"),
                 p("My name is Zilu Zhou and I have been working as health policy analyst at Vanderbilt University Medical Center since 2016.
@@ -69,7 +69,7 @@ body <- dashboardBody(
                   used a public dataset from the Health Nutrition and Population Statistics database hosted by the World Bank Group to demonstrate
                   an association between child mortality and female education. Our submission was ranked second."),
                 p("Note: Graphic themes adapted from Dr. Christopher Adolph’s codes (faculty.washington.edu/cadolph)."),
-                tags$a(href="http://www.user2019.fr/datathon/","http://www.user2019.fr/datathon/"),
+                tags$a(href="http://www.user2019.fr/datathon/","http://www.user2019.fr/datathon/",target="_blank"),
                 br(),
                 br(),
                 fluidRow(
@@ -105,7 +105,7 @@ body <- dashboardBody(
                 fluidRow(
                     column(7,p("Sorting and filtering are enabled. Click \"Download\" button to save the data as a csv.")),
                     column(2,downloadButton("downloadData", "Download")),
-                    column(3,tags$a(href="https://bit.ly/2zQKL3F", "Link to original data source"))
+                    column(3,tags$a(href="https://bit.ly/2zQKL3F", "Link to original data source",target="_blank"))
                 ),
                 br(),
                 fluidRow(

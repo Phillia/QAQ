@@ -5,9 +5,9 @@ account: ziluzhou
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1147569
-bundleId: 2385511
+bundleId: 2406815
 url: https://ziluzhou.shinyapps.io/sample_work/
-when: 1567624794.89913
+when: 1568215474.22296
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: food.R|food.xlsx|insurance.R|sample.rda|us_states_hexgrid/us_states_hexgrid.cpg|us_states_hexgrid/us_states_hexgrid.dbf|us_states_hexgrid/us_states_hexgrid.prj|us_states_hexgrid/us_states_hexgrid.shp|us_states_hexgrid/us_states_hexgrid.shx
