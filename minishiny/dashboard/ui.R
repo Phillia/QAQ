@@ -31,7 +31,7 @@ body <- dashboardBody(
                   You can also use the default street map tiles."),
                 tags$a(href="https://rstudio.github.io/leaflet/","Click to learn more",target="_blank"),
                 h2("Other Resources"),
-                tags$a(href="https://rstudio.github.io/shinydashboard/","Easy dashboards with \"shinydashboard\""),
+                tags$a(href="https://rstudio.github.io/shinydashboard/","Easy dashboards with \"shinydashboard\"",target="_blank"),
                 br(),
                 tags$a(href="https://shiny.rstudio.com/articles/cheatsheet.html","Shiny cheat sheet",target="_blank"),
                 br(),
