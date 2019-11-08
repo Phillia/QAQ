@@ -1,7 +1,7 @@
 library(shinydashboard)
 library(leaflet)
 
-load("foodlist.rda")
+new <- readRDS("foodlist.rds")
 rescat <- unique(new$category)
 rescat2 <- unique(new[!is.na(new$sub),]$sub) 
 
@@ -66,10 +66,9 @@ body <- dashboardBody(
         
         tabItem(tabName = "p3",
                 h2("A Personal Food Map For Nashville"),
-                p("This real street map marks a list of my favorite restaurants/groceries in Nashville. 
+                p("This real street map marks a list of selected restaurants/groceries in Nashville. 
                 Click to filter different categories.
                   Entering your current location will rezoom the map to show spots close to you.
-                  Bon appetit!
                   "),
                 fluidRow(
                     column(width=4,

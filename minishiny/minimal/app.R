@@ -9,8 +9,10 @@
 
 library(shiny)
 library(leaflet)
+library(DT)
+
 #path defaults to where the app file physically sits
-load("foodlist.rda")
+new <- readRDS("foodlist.rds")
 rescat <- unique(new$category)
 
 # Define UI for application that draws a histogram
@@ -18,7 +20,7 @@ ui <- fluidPage(
   
   # Application title
   titlePanel("A Personal Food Map For Nashville"),
-  p("This real street map marks a list of my favorite restaurants/groceries in Nashville. 
+  p("This real street map marks a list of restaurants/groceries in Nashville. 
       Click to filter different categories."),
   
   # UI input
@@ -30,8 +32,11 @@ ui <- fluidPage(
   #### KEEP A MINI DEBUGGER####
   br(),
   p("I always place a mini debugger in my draft to help debug reactive structure and comment it out later."),
-  verbatimTextOutput("check")
+  verbatimTextOutput("check"),
   
+  br(),
+  p("View the data"),
+  DTOutput("raw_tb")
 )
 
 # Define server logic required to draw a histogram
@@ -55,6 +60,7 @@ server <- function(input, output, session) {
       setView(-86.77435,36.16223,11)
   })
   
+  output$raw_tb <- renderDT(res()[,c("name","street")])
   
 }
 

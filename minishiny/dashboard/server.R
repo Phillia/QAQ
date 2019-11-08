@@ -4,7 +4,7 @@ library(htmltools)
 library(dplyr)
 library(tmaptools)
 
-load("foodlist.rda")
+new <- readRDS("foodlist.rds")
 rescat <- unique(new$category)
 rescat2 <- unique(new[!is.na(new$sub),]$sub) 
 

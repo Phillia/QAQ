@@ -19,7 +19,10 @@ new[new$name=="Pastaria",c("longitude","lat")] <- c(-86.8202853,36.1513777)
 new[new$name=="Lemongrass Thai",c("longitude","lat")] <- c(-86.8555744,36.1296867)
 new[new$name=="Anatolia",c("longitude","lat")] <- c(-86.8523238,36.1299624)
 new[new$name=="Merengue Cafe",c("longitude","lat")] <- c(-86.7684410510235,36.1133171653906) 
+new[new$name=="Sump Coffee",c("longitude","lat")] <- c(-86.8202853,36.1513777)
+new[new$name=="Korea House Restaurant",c("longitude","lat")] <- c(-86.8742499,36.1436356)
 
 new <- new %>% mutate(dish=ifelse(is.na(dish),"",dish))
 
 save(new,file="foodie.rda")
+saveRDS(new,file="~/Desktop/foodlist.rds")
