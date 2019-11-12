@@ -61,6 +61,7 @@ body <- dashboardBody(
                 tags$a(href="https://ziluzhou.shinyapps.io/minimal/","Demo",target="_blank"),
                 br(),
                 fluidRow(column(12,imageOutput("p7"))),
+                br(),
                 fluidRow(style = "padding-top:20px",column(12,imageOutput("p8")))
         ),
         

@@ -5,8 +5,8 @@ account: ziluzhou
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1178918
-bundleId: 2406724
+bundleId: 2581294
 url: https://ziluzhou.shinyapps.io/minimal/
-when: 1568213936.15358
+when: 1573509101.36786
 asMultiple: FALSE
 asStatic: FALSE
