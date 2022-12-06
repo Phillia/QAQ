@@ -38,11 +38,7 @@ body <- dashboardBody(
                 h2("About This Page"),
                 br(),
                 p("This is a Shiny app compiling data visualization examples I programmed in R. 
-                The main purpose of this app is to demonstrate my skills and flexibility to present data and 
-                design visualizations that make data more accessible to a broader audience.
-                I drew on projects at and outside of my work and either directly included the original graphic outputs or produced simpler examples.
-                I hope to apply my data knowledge and skills to promoting effective communication of data, evidence-based decision-making, and country ownership of SDGs.
-                  "),
+                The main purpose of this app is to demonstrate my data visualization skills."),
                 br(),
                 h2("What is Shiny app?"),
                 p("A Shiny app is an interactive web app written in R using the \"Shiny\" package. 
@@ -50,8 +46,8 @@ body <- dashboardBody(
                 tags$a(href="https://shiny.rstudio.com", "Click here",target="_blank"),
                 
                 h2("About Me"),
-                p("My name is Zilu Zhou and I have been working as health policy analyst at Vanderbilt University Medical Center since 2016.
-                In my current position, I regularly create a variety of graphs for data exploration and academic manuscripts 
+                p("My name is Zilu Zhou and I worked as a data analyst at Vanderbilt University Medical Center from 2016 to 2021.
+                In that position, I created a variety of graphs for data exploration and academic manuscripts 
                 as well as interacitve Shiny Apps to promote dissemination of research findings.
                 As a proficient R user, I am familiar with \"ggplot2\", \"leaflet\", and \"shiny\" packages and 
                 have experience in plotting geospatial data and designing complicated user interface in Shiny apps."),
@@ -67,7 +63,7 @@ body <- dashboardBody(
                 p("These two animated graphs were created for my team submission to the Datathan Challenge 
                   organized by useR! 2019 Conference and the French Statistical Society (SFdS). In the data challenge, my team
                   used a public dataset from the Health Nutrition and Population Statistics database hosted by the World Bank Group to demonstrate
-                  an association between child mortality and female education. Our submission was ranked second."),
+                  an association between child mortality and female education."),
                 p("Note: Graphic themes adapted from Dr. Christopher Adolph’s codes (faculty.washington.edu/cadolph)."),
                 tags$a(href="http://www.user2019.fr/datathon/","http://www.user2019.fr/datathon/",target="_blank"),
                 br(),
@@ -118,7 +114,6 @@ body <- dashboardBody(
                 h2("A Personal Food Map For Nashville"),
                 p("This real street map marks a list of my favorite restaurants/groceries in Nashville. 
                 Click to filter different categories.
-                  Entering your current location will rezoom the map to show spots close to you.
                   Bon appetit!
                   "),
                 fluidRow(
@@ -134,15 +129,15 @@ body <- dashboardBody(
                                checkboxInput('bar2', 'Select/Deselect All',TRUE)
                            ))
                 ),
-                fluidRow(
-                    column(width=7,
-                           textInput("loc","Optional: Pop Up My Location (Street/City/Zip)", "2525 West End Ave, Nashville, TN 37203",width="100%")
-                    ),
-                    column(width=4,
-                           fluidRow("", style = "height:25px;"),
-                           actionButton("locate","Update"),
-                           actionButton("reset","Reset")
-                    )),
+               # fluidRow(
+               #     column(width=7,
+               #            textInput("loc","Optional: Pop Up My Location (Street/City/Zip)", "2525 West End Ave, Nashville, TN 37203",width="100%")
+               #     ),
+               #     column(width=4,
+               #            fluidRow("", style = "height:25px;"),
+               #            actionButton("locate","Update"),
+               #            actionButton("reset","Reset")
+               #     )),
                 fluidRow(
                     #### KEEP A MINI DEBUGGER####
                     #verbatimTextOutput("check"),
