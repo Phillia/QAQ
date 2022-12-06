@@ -117,19 +117,19 @@ shinyServer(function(input, output,session) {
     
     #pop up feature
     myloc <- reactiveVal(NULL)
-    #observeEvent(input$locate,{
-    #    new <- geocode_OSM(paste0(input$loc,",USA"))
-    #    if(!is.null(new)) {
-    #        myloc(new$coords %>% t() %>% tbl_df())
-    #    } else {
-    #        myloc(NULL)
-    #        showNotification("Failed to geocode your location",type = "error")
-    #    }
-    #})
+    observeEvent(input$locate,{
+        new <- geocode_OSM(paste0(input$loc,",USA"))
+        if(!is.null(new)) {
+            myloc(new$coords %>% t() %>% tbl_df())
+        } else {
+            myloc(NULL)
+            showNotification("Failed to geocode your location",type = "error")
+        }
+    })
     
-    #observeEvent(input$reset,{
-    #    myloc(NULL)
-    #})
+    observeEvent(input$reset,{
+        myloc(NULL)
+    })
     
     greenLeafIcon <- makeIcon(
         iconUrl = "http://leafletjs.com/examples/custom-icons/leaf-green.png",
